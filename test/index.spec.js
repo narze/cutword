@@ -15,11 +15,11 @@ describe('Index', () => {
       stubs: ["Logo"]
     })
 
-    expect(wrapper.html()).toContain("Puncome")
+    expect(wrapper.html()).toContain("Cutword")
   })
 
   test("cuts words", async () => {
-    const $axios = { $get: () => Promise.resolve({ output: 'ไก่|จิก|เด็ก|ตาย|บน|ปาก|โอ่ง' }) }
+    const $axios = { $get: () => Promise.resolve({ output: 'ตัด|คำ|ภาษา|ไทย' }) }
     const wrapper = mount(Index, {
       mocks: { $axios }
     })
@@ -27,15 +27,15 @@ describe('Index', () => {
     const textArea = wrapper.find("textarea#input")
     expect(textArea.exists()).toBe(true)
 
-    textArea.setValue("ไก่จิกเด็กตายบนปากโอ่ง")
-    expect(textArea.element.value).toBe("ไก่จิกเด็กตายบนปากโอ่ง")
+    textArea.setValue("ตัดคำภาษาไทย")
+    expect(textArea.element.value).toBe("ตัดคำภาษาไทย")
 
-    const button = wrapper.get("button#check")
+    const button = wrapper.get("button#cut")
     button.trigger("click")
 
     await flushPromises()
 
     const output = wrapper.get("textarea#output")
-    expect(output.element.value).toBe("ไก่|จิก|เด็ก|ตาย|บน|ปาก|โอ่ง")
+    expect(output.element.value).toBe("ตัด|คำ|ภาษา|ไทย")
   })
 })

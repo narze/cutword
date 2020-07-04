@@ -1,4 +1,6 @@
-# puncome
+# Cutword
+
+Cut Thai words, uses [Wordcut](https://github.com/veer66/wordcut)
 
 ## Build Setup
 

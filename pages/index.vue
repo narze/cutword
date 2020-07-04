@@ -3,29 +3,37 @@
     <div>
       <!-- <Logo /> -->
       <h1 class="title">
-        Puncome
+        Cutword
       </h1>
 
       <div>
-        <textarea v-model="input" name="input" id="input" class="border p-4" cols="50" rows="10"></textarea>
+        <textarea v-model="input" name="input" id="input" class="border p-4" cols="50" rows="5"></textarea>
       </div>
 
       <div class="my-2">
-        <button @click="check" id="check" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Check</button>
+        <button @click="cut" id="cut" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Cut!</button>
       </div>
 
       <div>
-        <textarea v-model="output" name="output" id="output" class="border p-4" cols="50" rows="10"></textarea>
+        <textarea v-model="output" name="output" id="output" class="border p-4" cols="50" rows="5"></textarea>
       </div>
 
       <div class="links">
         <a
-          href="https://github.com/narze/puncome"
+          href="https://github.com/narze/cutword"
           target="_blank"
           rel="noopener noreferrer"
           class="button--grey"
         >
           GitHub
+        </a>
+        <a
+          href="https://github.com/veer66/wordcut"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="button--grey"
+        >
+          Wordcut
         </a>
       </div>
     </div>
@@ -38,18 +46,21 @@ import Vue from 'vue'
 export default Vue.extend({
   data() {
     return {
-      input: "คุณสามารถอธิบายเรื่องยากด้วยคำที่ง่ายลงได้หรือไม่",
+      input: "ตัดคำภาษาไทย",
       output: "",
     }
   },
   methods: {
-    async check() {
+    async cut() {
       const host = window.location.origin
       const result = await this.$axios.$get(`${host}/api/wordcut?input=${this.input}`)
       this.output = result.output
       console.log(this.output)
     }
-  }
+  },
+  mounted() {
+    this.cut()
+  },
 })
 </script>
 
