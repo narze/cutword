@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <div>
-      <!-- <Logo /> -->
       <h1 class="title">
         Cutword
       </h1>
@@ -55,7 +54,6 @@ export default Vue.extend({
       const host = window.location.origin
       const result = await this.$axios.$get(`${host}/api/wordcut?input=${this.input}`)
       this.output = result.output
-      console.log(this.output)
     }
   },
   mounted() {
